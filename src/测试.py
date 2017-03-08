@@ -3,9 +3,21 @@ Created on 2017年3月8日
 
 @author: Administrator
 '''
-l={};
+import xlsxwriter;
 
-l["sdf"]="sdfdf";
-l["ss"]="ss";
+list_sa = [1,2]
 
-print(l)
+def addSheet():
+    workBook = xlsxwriter.Workbook("demo.xlsx");
+    workSheet = workBook.add_worksheet();
+    workSheet.set_column('A:A', 20);
+    
+addSheet();
+
+
+
+def test():
+    list_sa.append([10,11])
+    
+test()
+print(list_sa) 
