@@ -40,7 +40,7 @@ def buildGraph(sourceFile, buildFile):
 
 # Going
 print("~程序正在运行~")
-buildGraph("20172018华中师大教技群.txt", '20172018华中师大教技群.xlsx')
+buildGraph("bo.txt", 'bo.xlsx')
 print("~程序执行完成~")
     
 
