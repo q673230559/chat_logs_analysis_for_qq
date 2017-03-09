@@ -15,7 +15,7 @@ def getAll_people_list(fileName):
         all_people_list = re.findall(pa, data)
         return all_people_list
 
-# 获取所有时间 
+# 获取所有时间
 def getTime_list():
     time_list = []
     for i in range(0, 24):
@@ -28,7 +28,7 @@ def getTime_list():
     return time_list
 
 # 成员列表,不重复
-def getPeople_list(all_people_list):    
+def getPeople_list(all_people_list):
         people_list_temp = set(all_people_list)
         people_list = {}
         for plt in people_list_temp:
