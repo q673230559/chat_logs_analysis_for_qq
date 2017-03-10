@@ -1,14 +1,23 @@
-# 群活跃统计程序
-## 使用指南：
+# 群聊天记录分析
+**使用及功能介绍**
 
 *1*.把群聊天记录导出成txt格式，编码为utf-8
 
-*2*.放置在项目根目录下，调用以下函数  
+*2*.放置在项目根目录下，修改main启动文件
 
-buildActiveGraph(sourceFile,buildFile)  
+*3*.功能1：统计一天内每个时段的活跃量输出到excel文档
 
-&emsp;&emsp;--sourceFile&emsp;&emsp; txt聊天记录源文件  
+*4*.功能2：统计每个人活跃量并排序输出到excel文档
 
-&emsp;&emsp;--buildFile&emsp;&emsp;xslx生成的文件名  
+*5*.功能2：计算群回复平均响应时间输出到excel文档
+
+*6*.功能3：分析出群热点关键词输出到excel文档
+
+*7*.功能4：分析出群人物之间聊天亲密度也即估算潜在的关系
+
+*8*.功能5：分析出人物口头禅或者关注的领域
+
+
+
 
 [注：pip install xlsxwriter]
