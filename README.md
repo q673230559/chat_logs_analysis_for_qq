@@ -20,4 +20,5 @@
 
 
 
-[注：pip install xlsxwriter]
+注:  [pip install xlsxwriter]
+     [pip install jieba]

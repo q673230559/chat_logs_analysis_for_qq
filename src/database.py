@@ -70,6 +70,7 @@ def get_people_say_set(source_file):
     return people_list
 
 
+# 获取热门名词
 def get_hot_noun_counts(source_file):
     with open(source_file, encoding='utf-8') as f:
         data = f.read()
