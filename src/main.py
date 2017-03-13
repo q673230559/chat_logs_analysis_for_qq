@@ -16,12 +16,14 @@ def build_graph(source_file, build_file):
     workbook = xlsxwriter.Workbook(build_file)
     # 时间段活跃统计图
     time_set = database.get_time_set(source_file)
+    # 排序
     time_tuple = sorted(time_set.items(), key=lambda e: e[0], reverse=False)
     # 排序写入工作簿
     tools.add_sheet_type(workbook, "时间段活跃", time_tuple, "时间", "活跃量")
 
     # 成员活跃图
     people_say_set = database.get_people_say_set(source_file)
+    # 排序
     people_say_tuple = sorted(people_say_set.items(), key=lambda e: e[1], reverse=True)
     # 写入工作簿
     tools.add_sheet_type(workbook, "成员活跃", people_say_tuple, "成员", "活跃量")
@@ -37,7 +39,7 @@ def build_graph(source_file, build_file):
 
 # Going
 print("~程序正在运行~")
-build_graph("20172018华中师大教技群.txt", '20172018华中师大教技群.xls')
+build_graph("007.txt", '007.xls')
 print("~程序执行完成~")
     
 

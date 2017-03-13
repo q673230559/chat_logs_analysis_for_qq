@@ -12,9 +12,13 @@ def get_all_people_list(file_name):
     with open(file_name, encoding='utf-8') as f:
         data = f.read()
         # 例如20:50:52，要匹配其中的20
-        pa = re.compile(r"\S+\([0-9]+\)")
+        pa = r'[\d-]{10}\s[\d:]{7,8}\s+[^\n]+'
         all_people_list = re.findall(pa, data)
-        return all_people_list
+        people_list = []
+        for apl in all_people_list:
+            pa_apl = r'[\d-]{10}\s[\d:]{7,8}\s+'
+            people_list.append(re.split(pa_apl, apl)[1])
+        return people_list
 
 
 # 获取所有时间
@@ -31,12 +35,12 @@ def get_time_list():
 
 
 # 成员列表,不重复
-def get_people_list(all_people_list):
+def get_people_set(all_people_list):
     people_list_temp = set(all_people_list)
-    people_list = {}
+    people_set = {}
     for plt in people_list_temp:
-        people_list[plt] = "0"
-    return people_list
+        people_set[plt] = "0"
+    return people_set
 
 
 # 获取不同时间发言次数的set
@@ -60,14 +64,14 @@ def get_time_set(source_file):
 # 获取不同人发言次数Set
 def get_people_say_set(source_file):
     all_people_list = get_all_people_list(source_file)
-    people_list = get_people_list(all_people_list)
-    for people in people_list:
+    people_set = get_people_set(all_people_list)
+    for people in people_set:
         count = 0
         for people_say in all_people_list:
             if (people_say == people):
                 count += 1
-        people_list[people] = count
-    return people_list
+        people_set[people] = count
+    return people_set
 
 
 # 获取热门名词
