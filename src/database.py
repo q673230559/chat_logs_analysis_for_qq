@@ -8,6 +8,7 @@ import jieba.posseg as pseg
 
 
 # 匹配出所有名字,带重复
+# 返回如：['雲生不知处', '雲生不知处', '韩旭东', '1201－璩诗斌',...]
 def get_all_people_list(file_name):
     with open(file_name, encoding='utf-8') as f:
         data = f.read()
@@ -22,6 +23,7 @@ def get_all_people_list(file_name):
 
 
 # 获取所有时间
+# 返回如：['00', '01', '02',...]
 def get_time_list():
     time_list = []
     for i in range(0, 24):
@@ -35,6 +37,7 @@ def get_time_list():
 
 
 # 成员列表,不重复
+# 返回如：{'诗斌': '0', '陈雨': '0', '1204-杨磊': '0', '雲生不知处': '0', ...}
 def get_people_set(all_people_list):
     people_list_temp = set(all_people_list)
     people_set = {}
@@ -44,6 +47,7 @@ def get_people_set(all_people_list):
 
 
 # 获取不同时间发言次数的set
+# 返回如：{'16点': 449, '06点': 0, '03点': 0, '12点': 118, '00点': 0, '04点': 0,...}
 def get_time_set(source_file):
     time_list = get_time_list()
     with open(source_file, encoding='utf-8') as f:
@@ -62,6 +66,7 @@ def get_time_set(source_file):
 
 
 # 获取不同人发言次数Set
+# 返回如：{'诗斌': 171, '陈雨': 216, '1204-杨磊': 48, '雲生不知处': 2,...}
 def get_people_say_set(source_file):
     all_people_list = get_all_people_list(source_file)
     people_set = get_people_set(all_people_list)
@@ -71,10 +76,12 @@ def get_people_say_set(source_file):
             if (people_say == people):
                 count += 1
         people_set[people] = count
+    print(people_set)
     return people_set
 
 
 # 获取热门名词
+# 返回如：[('东西', 16), ('上海', 16), ('武汉', 14), ('杭州', 9), ('滨江', 6),...]
 def get_hot_noun_counts(source_file):
     with open(source_file, encoding='utf-8') as f:
         data = f.read()
