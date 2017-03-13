@@ -76,7 +76,6 @@ def get_people_say_set(source_file):
             if (people_say == people):
                 count += 1
         people_set[people] = count
-    print(people_set)
     return people_set
 
 

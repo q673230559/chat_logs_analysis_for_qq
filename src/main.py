@@ -8,7 +8,7 @@ import service
 
 # Going
 print("~程序正在运行~")
-service.build_graph("Life.txt", 'Life.xls')
+service.build_graph()
 print("~程序执行完成~")
     
 

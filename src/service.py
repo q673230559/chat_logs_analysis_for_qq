@@ -6,10 +6,18 @@
 import xlsxwriter
 import database
 import tools
+import os
+
+
+# 循环建立图表
+def build_graph():
+    rootdir = "./in/"                                  # 指明被遍历的文件夹
+    for rd in os.listdir(rootdir):
+        build_one_graph("in/"+rd, "out/"+rd.split(".txt")[0]+".xlsx")
 
 
 # 建立图表
-def build_graph(source_file, build_file):
+def build_one_graph(source_file, build_file):
     # 创建EXCEL工作簿
     workbook = xlsxwriter.Workbook(build_file)
     # 时间段活跃统计图
