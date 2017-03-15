@@ -4,7 +4,9 @@
 # @author: Administrator
 # '''
 
-import time, datetime, re, tools
+import time
+import re
+import datetime
 
 with open("in/20172018华中师大教技群.txt", encoding='utf-8') as f:
     data = f.read()
@@ -21,13 +23,18 @@ with open("in/20172018华中师大教技群.txt", encoding='utf-8') as f:
     print(timesec)
     a = 0
     b = 0
+    s = 0
     for it in range(0, len(timesec)):
         if it >= 1:
             sec = timesec[it] - timesec[it - 1]
             if sec < 1800:
+                s += sec
                 a += 1
+                print(sec)
                 # tools.add_sheet_type()
             else:
                 b += 1
-    print(a)
-    print(b)
+    print("统计值：", a)
+    print("非统计值：", b)
+    print("统计比率：", a / (b + a))
+    print("均值：", s / (a + b))
