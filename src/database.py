@@ -95,7 +95,7 @@ def get_hot_noun_counts(source_file):
         for w in seg_list:
             if (w.flag == "ns"):
                 lists.append(w.word)
-        # print("******群热词统计******")
+        # print("******群热词统计**0【kp-****")
         # print("带重复名词总量",len(lists))
         seg_list_norepeat = set(lists)
         # print("不重复名词总量",len(seg_list_noRepeat))

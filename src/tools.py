@@ -25,7 +25,7 @@ def add_sheet_type(workbook, sheetname, thistuple, a_title, b_title):
 
 # 添加sheet,两列结构 最后一个参数是Set
 def add_sheet_type2(workbook, sheetname, thistuple, a_title, b_title):
-    print("正在写入数据至 :", sheetname, " 工作簿")
+    # print("正在写入数据至 :", sheetname, " 工作簿")
     # 创建sheet
     worksheet = workbook.add_worksheet(sheetname)
     worksheet.set_column('A:A', 40)
@@ -38,4 +38,4 @@ def add_sheet_type2(workbook, sheetname, thistuple, a_title, b_title):
         worksheet.write(int(i), 0, pls)
         worksheet.write(int(i), 1, thistuple[pls])
         i += 1
-    print("写入完成")
+    # print("写入完成")
