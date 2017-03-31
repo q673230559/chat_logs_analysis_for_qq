@@ -45,5 +45,10 @@ def analyze():
         print("所有均值：%.2f" % ((s + s1) / (a + b)))
 
 
-
 analyze()
+# dic = {1: 2, 3: 4}
+# print(dic.items())
+# print(dir("test"))
+# s = input("input:")
+# print(s)
+print(re.match("com", "www.baidu.com"))
