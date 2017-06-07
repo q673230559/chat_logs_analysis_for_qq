@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 # '''
 # Created on 2017年3月8日
 #
@@ -7,7 +8,10 @@
 
 # 添加sheet,两列结构 最后一个参数是元组
 def add_sheet_type(workbook, sheetname, thistuple, a_title, b_title):
-    print("正在写入数据至 :", sheetname, " 工作簿")
+    import sys
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
+    print("正在写入：“"+sheetname+"”工作簿")
     # 创建sheet
     worksheet = workbook.add_worksheet(sheetname)
     worksheet.set_column('A:A', 40)

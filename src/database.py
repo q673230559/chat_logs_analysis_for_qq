@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 # '''
 # Created on 2017年3月8日
 #
@@ -10,16 +11,16 @@ import jieba.posseg as pseg
 # 匹配出所有名字,带重复
 # 返回如：['雲生不知处', '雲生不知处', '韩旭东', '1201－璩诗斌',...]
 def get_all_people_list(file_name):
-    with open(file_name, encoding='utf-8') as f:
-        data = f.read()
-        # 例如20:50:52，要匹配其中的20
-        pa = r'[\d-]{10}\s[\d:]{7,8}\s+[^\n]+'
-        all_people_list = re.findall(pa, data)
-        people_list = []
-        for apl in all_people_list:
-            pa_apl = r'[\d-]{10}\s[\d:]{7,8}\s+'
-            people_list.append(re.split(pa_apl, apl)[1])
-        return people_list
+    f = open(name=file_name)
+    data = f.read()
+    # 例如20:50:52，要匹配其中的20
+    pa = r'[\d-]{10}\s[\d:]{7,8}\s+[^\n]+'
+    all_people_list = re.findall(pa, data)
+    people_list = []
+    for apl in all_people_list:
+        pa_apl = r'[\d-]{10}\s[\d:]{7,8}\s+'
+        people_list.append(re.split(pa_apl, apl)[1])
+    return people_list
 
 
 # 获取所有时间
@@ -37,6 +38,8 @@ def get_time_list():
 
 
 # 成员列表,不重复
+
+
 # 返回如：{'诗斌': '0', '陈雨': '0', '1204-杨磊': '0', '雲生不知处': '0', ...}
 def get_people_set(all_people_list):
     people_list_temp = set(all_people_list)
@@ -50,19 +53,19 @@ def get_people_set(all_people_list):
 # 返回如：{'16点': 449, '06点': 0, '03点': 0, '12点': 118, '00点': 0, '04点': 0,...}
 def get_time_set(source_file):
     time_list = get_time_list()
-    with open(source_file, encoding='utf-8') as f:
-        data = f.read()
-        # 例如20:50:52，要匹配其中的20
-        pa = re.compile(r"(\d\d):\d\d:\d\d")
-        times = re.findall(pa, data)
-        time_set = {}
-        for i in time_list:
-            num = 0
-            for time in times:
-                if time == i:
-                    num += 1
-            time_set[i + '点'] = num
-        return time_set
+    f = open(name=source_file)
+    data = f.read()
+    # 例如20:50:52，要匹配其中的20
+    pa = re.compile(r"(\d\d):\d\d:\d\d")
+    times = re.findall(pa, data)
+    time_set = {}
+    for i in time_list:
+        num = 0
+        for time in times:
+            if time == i:
+                num += 1
+        time_set[i + '点'] = num
+    return time_set
 
 
 # 获取不同人发言次数Set
@@ -82,29 +85,29 @@ def get_people_say_set(source_file):
 # 获取热门名词
 # 返回如：[('东西', 16), ('上海', 16), ('武汉', 14), ('杭州', 9), ('滨江', 6),...]
 def get_hot_noun_counts(source_file):
-    with open(source_file, encoding='utf-8') as f:
-        data = f.read()
-        re_pat = r'[\d-]{10}\s[\d:]{7,8}\s+[^\n]+\d{5,11}\)'  # 记录头数组['2016-06-24 15:42:52  张某(40**21)',…]
-        # li=re.findall(re_pat,data)
-        li_content = re.split(re_pat, data)
-        s = ""
-        for l in li_content:
-            s = s + l
-        seg_list = pseg.cut(s.strip())
-        lists = []
-        for w in seg_list:
-            if (w.flag == "ns"):
-                lists.append(w.word)
-        # print("******群热词统计**0【kp-****")
-        # print("带重复名词总量",len(lists))
-        seg_list_norepeat = set(lists)
-        # print("不重复名词总量",len(seg_list_noRepeat))
-        word_set = {}
-        for seg in seg_list_norepeat:
-            count = 0
-            for ss in lists:
-                if (ss == seg):
-                    count += 1
-            word_set[seg] = count
-        word_tuple_sort = sorted(word_set.items(), key=lambda e: e[1], reverse=True)
-        return word_tuple_sort
+    f = open(name=source_file)
+    data = f.read()
+    re_pat = r'[\d-]{10}\s[\d:]{7,8}\s+[^\n]+\d{5,11}\)'  # 记录头数组['2016-06-24 15:42:52  张某(40**21)',…]
+    # li=re.findall(re_pat,data)
+    li_content = re.split(re_pat, data)
+    s = ""
+    for l in li_content:
+        s = s + l
+    seg_list = pseg.cut(s.strip())
+    lists = []
+    for w in seg_list:
+        if (w.flag == "ns"):
+            lists.append(w.word)
+    # print("******群热词统计**0【kp-****")
+    # print("带重复名词总量",len(lists))
+    seg_list_norepeat = set(lists)
+    # print("不重复名词总量",len(seg_list_noRepeat))
+    word_set = {}
+    for seg in seg_list_norepeat:
+        count = 0
+        for ss in lists:
+            if (ss == seg):
+                count += 1
+        word_set[seg] = count
+    word_tuple_sort = sorted(word_set.items(), key=lambda e: e[1], reverse=True)
+    return word_tuple_sort

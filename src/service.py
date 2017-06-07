@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 # '''
 # Created on 2017年3月8日
 #
@@ -24,7 +25,7 @@ def build_one_graph(source_file, build_file):
     time_set = database.get_time_set(source_file)
     # 排序
     time_tuple = sorted(time_set.items(), key=lambda e: e[0], reverse=False)
-    # 排序写入工作簿
+    # 写入工作簿
     tools.add_sheet_type(workbook, "时间段活跃", time_tuple, "时间", "活跃量")
 
     # 成员活跃图
