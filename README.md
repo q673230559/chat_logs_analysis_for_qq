@@ -1,9 +1,13 @@
 Project Number：py20170308
 # 群聊天记录分析
-### 使用方法
-导出聊天记录成txt格式，编码utf-8,复制到“/in”目录文件夹下，运行main.py分析结果存放在“/out”目录下
+## 使用方法
+*1*.版本：python2.7
 
-### 功能说明
+*2*.依赖：[pip install xlsxwriter] [pip install jieba]
+
+*3*.导出聊天记录成txt格式，编码utf-8,复制到“/in”目录文件夹下，运行main.py分析结果存放在“/out”目录下
+
+## 功能说明
 *1*.把群聊天记录导出成txt格式，编码为utf-8
 
 *2*.放置在项目根目录下，修改main启动文件
@@ -20,8 +24,3 @@ Project Number：py20170308
 
 *8*.功能5：分析出人物口头禅或者关注的领域
 
-
-
-
-注:  [pip install xlsxwriter]
-     [pip install jieba]

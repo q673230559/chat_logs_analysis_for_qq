@@ -1,8 +1,9 @@
-# -*- coding: UTF-8 -*-
+#!/usr/bin/python
+# -*- coding:utf-8 -*-
+
 # '''
-# Created on 2017年3月8日
-#
-# @author: Administrator
+# Created on 2017.3.8
+# @author: hxd
 # '''
 import re
 import jieba.posseg as pseg
@@ -11,7 +12,7 @@ import jieba.posseg as pseg
 # 匹配出所有名字,带重复
 # 返回如：['雲生不知处', '雲生不知处', '韩旭东', '1201－璩诗斌',...]
 def get_all_people_list(file_name):
-    f = open(name=file_name)
+    f = open(file_name, "r")
     data = f.read()
     # 例如20:50:52，要匹配其中的20
     pa = r'[\d-]{10}\s[\d:]{7,8}\s+[^\n]+'
@@ -19,7 +20,7 @@ def get_all_people_list(file_name):
     people_list = []
     for apl in all_people_list:
         pa_apl = r'[\d-]{10}\s[\d:]{7,8}\s+'
-        people_list.append(re.split(pa_apl, apl)[1])
+        people_list.append(unicode(re.split(pa_apl, apl)[1], "utf-8"))
     return people_list
 
 
@@ -38,8 +39,6 @@ def get_time_list():
 
 
 # 成员列表,不重复
-
-
 # 返回如：{'诗斌': '0', '陈雨': '0', '1204-杨磊': '0', '雲生不知处': '0', ...}
 def get_people_set(all_people_list):
     people_list_temp = set(all_people_list)
@@ -53,7 +52,7 @@ def get_people_set(all_people_list):
 # 返回如：{'16点': 449, '06点': 0, '03点': 0, '12点': 118, '00点': 0, '04点': 0,...}
 def get_time_set(source_file):
     time_list = get_time_list()
-    f = open(name=source_file)
+    f = open(source_file, "r")
     data = f.read()
     # 例如20:50:52，要匹配其中的20
     pa = re.compile(r"(\d\d):\d\d:\d\d")
@@ -64,7 +63,7 @@ def get_time_set(source_file):
         for time in times:
             if time == i:
                 num += 1
-        time_set[i + '点'] = num
+        time_set[i + 'h'] = num
     return time_set
 
 
@@ -85,7 +84,7 @@ def get_people_say_set(source_file):
 # 获取热门名词
 # 返回如：[('东西', 16), ('上海', 16), ('武汉', 14), ('杭州', 9), ('滨江', 6),...]
 def get_hot_noun_counts(source_file):
-    f = open(name=source_file)
+    f = open(source_file, "r")
     data = f.read()
     re_pat = r'[\d-]{10}\s[\d:]{7,8}\s+[^\n]+\d{5,11}\)'  # 记录头数组['2016-06-24 15:42:52  张某(40**21)',…]
     # li=re.findall(re_pat,data)

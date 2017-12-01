@@ -1,19 +1,22 @@
-# -*- coding: UTF-8 -*-
+#!/usr/bin/python
+# -*- coding:utf-8 -*-
+
 # '''
-# Created on 2017年3月8日
-#
-# @author: Administrator
+# Created on 2017.3.8
+# @author: hxd
+# about encoding you can see https://www.python.org/dev/peps/pep-0263/
 # '''
 import service
 
 
 # Going
-print("~程序正在运行~")
-# 绘图
+print("~let's Go~")
+
+# 绘图T
 service.build_graph()
 
 # 统计输出
-print("~程序执行完成~")
+print("~End~")
     
 
 
